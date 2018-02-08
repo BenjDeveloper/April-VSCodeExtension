@@ -1,0 +1,26 @@
+{
+    "name": "april",
+    "displayName": "April",
+    "description": "Language April by kenshin and Pandicorn",
+    "version": "0.0.1",
+    "publisher": "AprilSyntax",
+    "engines": {
+        "vscode": "^1.19.0"
+    },
+    "categories": [
+        "Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "april",
+            "aliases": ["April", "april"],
+            "extensions": [".april"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "april",
+            "scopeName": "source.april",
+            "path": "./syntaxes/april.tmLanguage.json"
+        }]
+    }
+}
