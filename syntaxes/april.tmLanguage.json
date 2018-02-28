@@ -7,13 +7,31 @@
 		},
 		{
 			"include": "#strings"
+		},
+		{
+			"include": "#declacionVar"
+		},
+		{
+			"include": "#declacionFn"
+		},
+		{
+			"include": "#declacionType"
+		},
+		{
+			"include": "#declacionMain"
+		},
+		{
+			"include": "#comment"
+		},
+		{
+			"include": "#directives"
 		}
 	],
 	"repository": {
 		"keywords": {
 			"patterns": [{
 				"name": "keyword.control.april",
-				"match": "\\b(if|while|for|return)\\b"
+				"match": "\\b(if|else|for|return)\\b"
 			}]
 		},
 		"strings": {
@@ -26,7 +44,142 @@
 					"match": "\\\\."
 				}
 			]
-		}
+		},
+		"declacionVar": {
+			"patterns": [{
+				"name": "support.variable.april",
+				"match": "\\b(var)\\b"
+			}]
+		},
+		"declacionFn": {
+			"patterns": [{
+				"name": "support.function.april",
+				"match": "\\b(fn)\\b"
+			}]
+		},
+		"declacionType": {
+			"patterns": [{
+				"name": "support.type.april",
+				"match": "\\b(void|bool|int1|int8|int16|int32|int64|int|float|double)\\b"
+			}]
+		},
+		"declacionMain": {
+			"patterns": [{
+				"name": "meta.diff.header.april",
+				"match": "\\b(main)\\b"
+			}]
+		},
+		"comment": {
+			"patterns": [
+				{
+					"name": "comment.block.documentation.js",
+					"begin": "/\\*\\*(?!/)",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.js"
+						}
+					},
+					"end": "\\*/",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.js"
+						}
+					},
+					"patterns": [
+						{
+							"include": "#docblock"
+						}
+					]
+				},
+				{
+					"name": "comment.block.js",
+					"begin": "(/\\*)(?:\\s*((@)internal)(?=\\s|(\\*/)))?",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.comment.js"
+						},
+						"2": {
+							"name": "storage.type.internaldeclaration.js"
+						},
+						"3": {
+							"name": "punctuation.decorator.internaldeclaration.js"
+						}
+					},
+					"end": "\\*/",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.js"
+						}
+					}
+				},
+				{
+					"begin": "(^[ \\t]+)?((//)(?:\\s*((@)internal)(?=\\s|$))?)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.whitespace.comment.leading.js"
+						},
+						"2": {
+							"name": "comment.line.double-slash.js"
+						},
+						"3": {
+							"name": "punctuation.definition.comment.js"
+						},
+						"4": {
+							"name": "storage.type.internaldeclaration.js"
+						},
+						"5": {
+							"name": "punctuation.decorator.internaldeclaration.js"
+						}
+					},
+					"end": "(?=^)",
+					"contentName": "comment.line.double-slash.js"
+				}
+			]
+		},
+		"directives": {
+			"name": "comment.line.triple-slash.directive.js",
+			"begin": "^(///)\\s*(?=<(reference|amd-dependency|amd-module)(\\s+(path|types|no-default-lib|name)\\s*=\\s*((\\'([^\\'\\\\]|\\\\\\'|\\\\)*\\')|(\\\"([^\\\"\\\\]|\\\\\\\"|\\\\)*\\\")))+\\s*/>\\s*$)",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.definition.comment.js"
+				}
+			},
+			"end": "(?=^)",
+			"patterns": [
+				{
+					"name": "meta.tag.js",
+					"begin": "(<)(reference|amd-dependency|amd-module)",
+					"beginCaptures": {
+						"1": {
+							"name": "punctuation.definition.tag.directive.js"
+						},
+						"2": {
+							"name": "entity.name.tag.directive.js"
+						}
+					},
+					"end": "/>",
+					"endCaptures": {
+						"0": {
+							"name": "punctuation.definition.tag.directive.js"
+						}
+					},
+					"patterns": [
+						{
+							"name": "entity.other.attribute-name.directive.js",
+							"match": "path|types|no-default-lib|name"
+						},
+						{
+							"name": "keyword.operator.assignment.js",
+							"match": "="
+						},
+						{
+							"include": "#string"
+						}
+					]
+				}
+			]
+		}	
 	},
 	"scopeName": "source.april"
 }
+

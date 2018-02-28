@@ -1,11 +1,19 @@
 {
     "name": "april",
     "displayName": "April",
-    "description": "Language April by kenshin and Pandicorn",
+    "description": "Syntax highlighting for April in VSCode",
     "version": "0.0.1",
-    "publisher": "AprilSyntax",
+    "publisher": "April Syntax",
+    "icon": "./images/logo(10).png",
+    "author": {
+        "name": "by kenshin and Pandicorn"
+    },
     "engines": {
         "vscode": "^1.19.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/PandiCornDeveloper/April-VSCodeExtension.git"
     },
     "categories": [
         "Languages"
@@ -21,6 +29,13 @@
             "language": "april",
             "scopeName": "source.april",
             "path": "./syntaxes/april.tmLanguage.json"
-        }]
+        }],
+        "iconThemes": [
+            {
+                "id": "iconFile",
+                "label": "iconFile",
+                "path": "./syntaxes/april.tmTheme.json"
+            }
+        ]
     }
 }
